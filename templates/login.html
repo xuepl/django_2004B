@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script type="text/javascript" src="/static/main.js"></script>
+    <style>
+        .title{
+            text-align: right;
+            font-size: 20px;
+        }
+        .text{
+            width:220px;
+        }
+        .zhuce table td input{
+            height: 30px;
+            width: 260px;
+            margin: 15px 10px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+    $(function(){
+        $("#btn").click(function(){
+            var data = {
+                username : $("#username").val(),
+                password : $("#password").val(),
+        };
+            $.ajax({
+                type:"POST",//请求方法
+                url:"http://127.0.0.1:8000/test/loginfor/",
+                contentType:"application/json;charset=utf-8",
+                data:JSON.stringify(data),
+                {#data:data,#}
+                dataType:"json", //响应数据类型
+                success:function(data){
+                    if(data.code == '2000'){
+                        alert(data.message)
+                    }else{
+                        alert(data.message)
+                    }
+                }
+            })
+        })
+    })
+    </script>
+</head>
+<body background="../static/1.jpg" style="background-size: 100%;background-repeat: no-repeat;background-attachment: fixed;">
+<div class="zhuce">
+        <table style="background-color:rgba(22, 104, 127,0.3)" width="360px" align="center">
+            <tr style="height: 20px"></tr>
+                <tr>
+                    <td class="title">账号</td>
+                    <td><input type="text" name="username" class="text" id="username"></td>
+                </tr>
+                <tr>
+                    <td class="title">密码</td>
+                    <td><input type="text" name="password" class="text" id="password"></td>
+                </tr>
+                <tr>
+                    <td>    </td>
+                    <td><input type="button" id="btn" value="提交"></td>
+                </tr>
+                <tr>
+                    <td>  <p></p>  </td>
+                </tr>
+        </table>
+</div>
+</body>
+</html>
